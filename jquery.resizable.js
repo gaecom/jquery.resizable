@@ -110,6 +110,7 @@
 	    off.top += $this.height()-5;
 
 	    var handle_div = $('<div class="resize-handle"></div>');
+	    handle_div.css('background-color', 'gray');
 	    $this.append(handle_div);
 	    handle_div.css('position', 'relative');
 //	    handle_div.css('position', 'absolute');
