@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dummy Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  </head>
+  <body>
+
+<h1>Draggable</h1>
+<b>Draggable</b>
+
+<div id="resize-me"></div>
+
+  </body>
+
+  <script src="../jquery.draggable/jquery.draggable.js"></script>
+  <script src="jquery.resizable.js"></script>
+
+  <script>
+
+var divs = ['canvas-stock', 'canvas-rsi', 'canvas-capital'];
+
+for(var i = 0; i < divs.length; i++){
+    var id = divs[i];
+    console.log('ID:', id);
+//    $('body').prepend('<div class="resize-me violet"><div class="lol"></div>'+id+'</div>');
+    $('body').prepend('<div class="resize-me violet">'+id+'</div>');
+}
+
+
+function replaceWithCanvas(elem, w, h){
+    var id = elem.html();
+    var off = elem.offset();
+
+    var plotter = new Plotterx(id, id);
+    plotter.dimensions(w || 100, h || 100);
+    plotter.draw();
+
+    $('#canvas-container').append(plotter.can);
+    var can = $('#'+id).draggable();
+
+    elem.replaceWith(can);
+    elem = can;
+    elem.offset(off);
+}
+
+//$('.drag-to-canvas').draggable(replaceWithCanvas);
+
+$('.resize-me').draggable().resizable();
+//$('.resize-me').resizable();
+
+$('b').resizable();
+
+
+
+  </script>
+</html>
